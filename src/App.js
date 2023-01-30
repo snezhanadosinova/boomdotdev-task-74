@@ -3,25 +3,24 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
-  const [isNumber, setIsNumber] = useState(false);
+  // const [isNumber, setIsNumber] = useState(false);
 
-  const handleChange = (text, isNumber) => {
-    const onlyNumbers = text.replace(/\D/g, "");
-    setText(text);
-    if (text === onlyNumbers) {
-      // setText(text);
-      setIsNumber(true);
-    } else {
-      // setText(text);
-      setIsNumber(false);
-    }
-    return isNumber;
-  };
+  // const handleChange = (text, isNumber) => {
+  //   const onlyNumbers = text.replace(/\D/g, "");
+  //   setText(text);
+  //   if (text === onlyNumbers) {
+  //     // setText(text);
+  //     setIsNumber(true);
+  //   } else {
+  //     // setText(text);
+  //     setIsNumber(false);
+  //   }
+  //   return isNumber;
+  // };
 
-  const memoizedValue = useMemo(
-    () => handleChange(text, isNumber),
-    [text, isNumber]
-  );
+  const memoizedValue = useMemo(() => {
+    return /^\d+$/.test(text);
+  }, [text]);
 
   return (
     <div className="App">
